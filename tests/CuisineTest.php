@@ -22,13 +22,26 @@
             // Restaurant::deleteAll();
         }
 
+        function test_getType()
+        {
+            //Arrange
+            $type = "BBQ";
+            $test_cuisine = new Cuisine($type);
+
+            //Act
+            $result = $test_cuisine->getType();
+
+            //Assert
+            $this->assertEquals($type, $result);
+        }
+
         function test_GetRestaurant()
         {
             //Arrange
             $type = "BBQ";
             $id = null;
 
-            $test_cuisine = new Cuisine($name, $id);
+            $test_cuisine = new Cuisine($type, $id);
             $test_cuisine->save();
 
             $test_cuisine_id = $test_cuisine->getId();
@@ -36,6 +49,8 @@
             $name = "Bob's";
             $address = "22 N. Street";
             $phone = "(218)443-2911";
+            $cuisine_id = null;
+            $id = null;
 
             $test_restaurant = new Restaurant($name, $address, $phone, $cuisine_id, $id);
             $test_restaurant->save();
@@ -46,13 +61,47 @@
             $this->assertEquals([$test_restaurant], $result);
         }
 
+        function test_save()
+        {
+            //Arrange
+            $type = "BBQ";
+            $test_cuisine = new Cuisine($type);
+            $test_cuisine->save();
+
+            //Act
+            $result = Cuisine::getAll();
+
+            //Assert
+            $this->assertEquals($test_cuisine, $result[0]);
+
+        }
+
+        function test_getAll()
+        {
+            //Arrange
+            $type = "BBQ";
+            $type2 = "italian";
+            $test_cuisine = new Cuisine($type);
+            $test_cuisine->save();
+            $test_cuisine2 = new Cuisine($type2);
+            $test_cuisine2->save();
+
+            //Act
+            $result = Cuisine::getAll();
+
+            //Assert
+            $this->assertEquals([$test_cuisine, $test_cuisine2], $result);
+
+        }
+
         function test_deleteAll()
         {
             //Arrange
-
+            $type = "BBQ";
+            $test_cuisine = new Cuisine($type);
 
             //Act
-            $Cuisine::deleteAll();
+            Cuisine::deleteAll();
             $result = Cuisine::getAll();
 
             //Assert
