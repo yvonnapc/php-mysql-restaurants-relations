@@ -56,7 +56,6 @@
             //Arrange
             $type = "BBQ";
             $id = null;
-
             $test_cuisine = new Cuisine($type, $id);
             $test_cuisine->save();
 
@@ -65,11 +64,10 @@
             $name = "Bob's";
             $address = "22 N. Street";
             $phone = "(218)443-2911";
-            $cuisine_id = null;
-            $id = null;
 
-            $test_restaurant = new Restaurant($name, $address, $phone, $cuisine_id, $id);
+            $test_restaurant = new Restaurant($name, $address, $phone, $test_cuisine_id, $id);
             $test_restaurant->save();
+
             //Act
             $result = $test_cuisine->getRestaurants();
 

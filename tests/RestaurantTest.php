@@ -31,7 +31,7 @@
             $cuisine_id = null;
             $id = null;
 
-            $new_name = new Restaurant($name, $address, $phone, $cuisine_id, $id);
+            $new_name = new Restaurant($name, $address, $phone, $cuisine_id);
 
             //Act
             $result = $new_name->getName();
@@ -49,7 +49,7 @@
             $cuisine_id = null;
             $id = null;
 
-            $new_address = new Restaurant($name, $address, $phone, $cuisine_id, $id);
+            $new_address = new Restaurant($name, $address, $phone, $cuisine_id);
 
             //Act
             $result = $new_address->getAddress();
@@ -71,7 +71,9 @@
             $phone = "(218)443-2911";
             $cuisine_id = $test_cuisine->getId();
 
-            $test_restaurant = new Restaurant($name, $address, $phone, $cuisine_id, $id);
+            $test_restaurant = new Restaurant($name, $address, $phone, $cuisine_id);
+            $test_restaurant->save();
+            
             //Act
             $result = Restaurant::getAll();
 
@@ -102,9 +104,6 @@
             $result = Restaurant::getAll();
             $this->assertEquals($test_restaurant, $result[0]);
         }
-
-
-
     }
 
 ?>

@@ -25,8 +25,6 @@ class Cuisine
         return $this->id;
     }
 
-
-
     function getRestaurants()
     {
         $restaurants = array();
