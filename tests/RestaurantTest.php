@@ -38,6 +38,24 @@
             $this->assertEquals("Bob's", $result);
         }
 
+        function test_getAddress()
+        {
+            //Arrange
+            $name = "Bob's";
+            $address = "22 N. Street";
+            $phone = "(218)443-2911";
+            $cuisine_id = null;
+            $id = null;
+
+            $new_address = new Restaurant($name, $address, $phone, $cuisine_id, $id);
+
+            //Act
+            $result = $new_address->getAddress();
+
+            //Assert
+            $this->assertEquals("22 N. Street", $result);
+        }
+
     }
 
 ?>
