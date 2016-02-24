@@ -5,20 +5,20 @@
     * @backupStaticAttributes disabled
     */
 
-    require_once "src/WHATEVER_CLASS.php";
+    require_once "src/Cuisine.php";
 
-    $server = 'mysql:host=localhost;dbname=my_inventory_test';
+    $server = 'mysql:host=localhost;dbname=cuisine_test';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
 
 
-    class WHATEVER_CLASSTest extends PHPUnit_Framework_TestCase
+    class CuisineTest extends PHPUnit_Framework_TestCase
     {
 
         protected function tearDown()
         {
-            WHATEVER_CLASS:deleteAll();
+            Cuisine:deleteAll();
         }
 
 
