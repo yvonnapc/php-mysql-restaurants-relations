@@ -10,6 +10,10 @@ class Cuisine
         $this->id = $id;
     }
 
+    static function deleteAll()
+    {
+        $GLOBALS['DB']->exec("DELETE FROM cuisine;");
+    }
 
   }
 ?>

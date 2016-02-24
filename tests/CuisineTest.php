@@ -19,7 +19,7 @@
         protected function tearDown()
         {
             Cuisine::deleteAll();
-            Restaurant::deleteAll();
+            // Restaurant::deleteAll();
         }
 
         function test_GetRestaurant()
@@ -44,6 +44,19 @@
 
             //Assert
             $this->assertEquals([$test_restaurant], $result);
+        }
+
+        function test_deleteAll()
+        {
+            //Arrange
+
+
+            //Act
+            $Cuisine::deleteAll();
+            $result = Cuisine::getAll();
+
+            //Assert
+            $this->assertEquals([], $result);
         }
 
 

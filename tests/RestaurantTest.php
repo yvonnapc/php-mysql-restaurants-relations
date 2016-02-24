@@ -68,30 +68,30 @@
             $test_restaurant = new Restaurant($name, $address, $phone, $cuisine_id, $id);
             //Act
             $result = Restaurant::getAll();
-            var_dump($result);
+
             //Assert
             $this->assertEquals([$test_restaurant], $result);
 
         }
 
-        // function test_save()
-        // {
-        //     //Arrange
-        //     $name = "Bob's";
-        //     $address = "22 N. Street";
-        //     $phone = "(218)443-2911";
-        //     $cuisine_id = null;
-        //     $id = null;
-        //
-        //     $test_restaurant = new Restaurant($name, $address, $phone, $cuisine_id, $id);
-        //
-        //     //Act
-        //     $test_restaurant->save();
-        //
-        //     //Assert
-        //     $result = Restaurant::getAll();
-        //     $this->assertEquals($test_restaurant, $result[0]);
-        // }
+        function test_save()
+        {
+            //Arrange
+            $name = "Bob's";
+            $address = "22 N. Street";
+            $phone = "(218)443-2911";
+            $cuisine_id = null;
+            $id = null;
+
+            $test_restaurant = new Restaurant($name, $address, $phone, $cuisine_id, $id);
+
+            //Act
+            $test_restaurant->save();
+
+            //Assert
+            $result = Restaurant::getAll();
+            $this->assertEquals($test_restaurant, $result[0]);
+        }
 
 
 
