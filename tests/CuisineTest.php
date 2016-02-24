@@ -6,6 +6,7 @@
     */
 
     require_once "src/Cuisine.php";
+    require_once "src/Restaurant.php";
 
     $server = 'mysql:host=localhost;dbname=cuisine_test';
     $username = 'root';
@@ -26,7 +27,8 @@
         {
             //Arrange
             $type = "BBQ";
-            $test_cuisine = new Cuisine($type);
+            $id = null;
+            $test_cuisine = new Cuisine($type, $id);
 
             //Act
             $result = $test_cuisine->getType();
@@ -49,7 +51,7 @@
             $this->assertEquals(true, is_numeric($result));
         }
 
-        function test_GetRestaurant()
+        function test_GetRestaurants()
         {
             //Arrange
             $type = "BBQ";
@@ -69,7 +71,7 @@
             $test_restaurant = new Restaurant($name, $address, $phone, $cuisine_id, $id);
             $test_restaurant->save();
             //Act
-            $result = $test_cuisine->getRestaurant();
+            $result = $test_cuisine->getRestaurants();
 
             //Assert
             $this->assertEquals([$test_restaurant], $result);
@@ -79,7 +81,8 @@
         {
             //Arrange
             $type = "BBQ";
-            $test_cuisine = new Cuisine($type);
+            $id = null;
+            $test_cuisine = new Cuisine($type, $id);
             $test_cuisine->save();
 
             //Act
@@ -94,10 +97,11 @@
         {
             //Arrange
             $type = "BBQ";
+            $id = null;
             $type2 = "italian";
-            $test_cuisine = new Cuisine($type);
+            $test_cuisine = new Cuisine($type, $id);
             $test_cuisine->save();
-            $test_cuisine2 = new Cuisine($type2);
+            $test_cuisine2 = new Cuisine($type2, $id);
             $test_cuisine2->save();
 
             //Act
@@ -112,7 +116,12 @@
         {
             //Arrange
             $type = "BBQ";
-            $test_cuisine = new Cuisine($type);
+            $id = null;
+            $type2 = "italian";
+            $test_cuisine = new Cuisine($type, $id);
+            $test_cuisine->save();
+            $test_cuisine2 = new Cuisine($type2, $id);
+            $test_cuisine2->save();
 
             //Act
             Cuisine::deleteAll();

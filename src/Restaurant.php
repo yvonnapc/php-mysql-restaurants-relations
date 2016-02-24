@@ -8,13 +8,12 @@ class Restaurant
     private $id;
 
 
-    function __construct($name, $address, $phone, $cuisine_id, $id)
+    function __construct($name, $address, $phone, $cuisine_id)
     {
         $this->name = $name;
         $this->address = $address;
         $this->phone = $phone;
         $this->cuisine_id = $cuisine_id;
-        $this->id = $id;
     }
 
     function setName($new_name)
@@ -77,6 +76,11 @@ class Restaurant
           array_push($restaurants, $new_restaurant);
         }
         return $restaurants;
+    }
+
+    static function deleteAll()
+    {
+        $GLOBALS['DB']->exec("DELETE FROM restaurant;");
     }
   }
 ?>

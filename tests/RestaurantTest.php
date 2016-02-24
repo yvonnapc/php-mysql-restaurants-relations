@@ -6,6 +6,7 @@
     */
 
     require_once "src/Restaurant.php";
+    require_once "src/Cuisine.php";
 
     $server = 'mysql:host=localhost;dbname=cuisine_test';
     $username = 'root';
@@ -60,11 +61,15 @@
         function test_getAll()
         {
             //Arrange
+            $type = "BBQ";
+            $id = null;
+            $test_cuisine = new Cuisine($type, $id);
+            $test_cuisine->save();
+
             $name = "Bob's";
             $address = "22 N. Street";
             $phone = "(218)443-2911";
-            $cuisine_id = null;
-            $id = null;
+            $cuisine_id = $test_cuisine->getId();
 
             $test_restaurant = new Restaurant($name, $address, $phone, $cuisine_id, $id);
             //Act
@@ -78,13 +83,17 @@
         function test_save()
         {
             //Arrange
+            $type = "BBQ";
+            $id = null;
+            $test_cuisine = new Cuisine($type, $id);
+            $test_cuisine->save();
+
             $name = "Bob's";
             $address = "22 N. Street";
             $phone = "(218)443-2911";
-            $cuisine_id = null;
-            $id = null;
+            $cuisine_id = $test_cuisine->getId();
 
-            $test_restaurant = new Restaurant($name, $address, $phone, $cuisine_id, $id);
+            $test_restaurant = new Restaurant($name, $address, $phone, $cuisine_id);
 
             //Act
             $test_restaurant->save();

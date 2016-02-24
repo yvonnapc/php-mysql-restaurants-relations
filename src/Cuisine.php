@@ -25,20 +25,9 @@ class Cuisine
         return $this->id;
     }
 
-    function getAll()
-    {
-        $returned_cuisines = $GLOBALS['DB']->query("SELECT * FROM cuisine;");
-        $cuisines = array();
-        foreach($returned_cuisines as $cuisine) {
-            $type = $cuisine['type'];
-            $id = $cuisine['id'];
-            $new_cuisine = new Cuisine($type, $id);
-            array_push($cuisines, $new_cuisine);
-        }
-        return $cuisines;
-    }
 
-    function getRestaurant()
+
+    function getRestaurants()
     {
         $restaurants = array();
         $returned_restaurants = $GLOBALS['DB']->query("SELECT * FROM restaurant WHERE cuisine_id = {$this->getId()}");
@@ -52,19 +41,34 @@ class Cuisine
           array_push($restaurants, $new_restaurant);
         }
         return $restaurants;
-        }
     }
+
 
     function save()
     {
         $GLOBALS['DB']->exec("INSERT INTO cuisine (type) VALUES ('{$this->getType()}')");
-        $this->id = $GLOBALS['DB']->lastInsertId();
+        $this->id= $GLOBALS['DB']->lastInsertId();
     }
 
     static function deleteAll()
     {
         $GLOBALS['DB']->exec("DELETE FROM cuisine;");
     }
+
+    static function getAll()
+    {
+        $returned_cuisines = $GLOBALS['DB']->query("SELECT * FROM cuisine;");
+        $cuisines = array();
+        foreach($returned_cuisines as $cuisine) {
+            $type = $cuisine['type'];
+            $id = $cuisine['id'];
+            $new_cuisine = new Cuisine($type, $id);
+            array_push($cuisines, $new_cuisine);
+        }
+        return $cuisines;
+    }
+
+
 
   }
 ?>
