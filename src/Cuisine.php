@@ -1,13 +1,14 @@
 <?php
 class Cuisine
 {
-    // private
-    //
-    //
-    // function __construct()
-    // {
-    //
-    // }
+    private $type;
+    private $id;
+
+    function __construct($type, $id)
+    {
+        $this->type = $type;
+        $this->id = $id;
+    }
 
 
   }

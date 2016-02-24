@@ -56,5 +56,27 @@ class Restaurant
     {
         return $this->id;
     }
+
+    function save()
+    {
+        $GLOBALS['DB']->exec("INSERT INTO restaurant (name, address, phone, cuisine_id) VALUES ('{$this->getName()}','{$this->getAddress()}','{$this->getPhone()}',{$this->getCuisineId()});");
+        $this->id = $GLOBALS['DB']->lastInsertId();
+    }
+
+    static function getAll()
+    {
+        $returned_restaurants = $GLOBALS['DB']->query("SELECT * FROM restaurant");
+        $restaurants = array();
+        foreach($returned_restaurants as $restaurant) {
+          $name = $restaurant['name'];
+          $address = $restaurant['address'];
+          $phone = $restaurant['phone'];
+          $cuisine_id = $restaurant['cuisine_id'];
+          $id = $restaurant['id'];
+          $new_restaurant = new Restaurant($name, $address, $phone, $cuisine_id);
+          array_push($restaurants, $new_restaurant);
+        }
+        return $restaurants;
+    }
   }
 ?>
