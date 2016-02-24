@@ -15,10 +15,11 @@
     class RestaurantTest extends PHPUnit_Framework_TestCase
     {
 
-        // protected function tearDown()
-        // {
-        //     Restaurant:deleteAll();
-        // }
+        protected function tearDown()
+        {
+            Restaurant::deleteAll();
+            Cuisine::deleteAll();
+        }
 
         function test_getName()
         {

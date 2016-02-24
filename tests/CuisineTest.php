@@ -19,7 +19,7 @@
         protected function tearDown()
         {
             Cuisine::deleteAll();
-            // Restaurant::deleteAll();
+            Restaurant::deleteAll();
         }
 
         function test_getType()
@@ -33,6 +33,20 @@
 
             //Assert
             $this->assertEquals($type, $result);
+        }
+
+        function test_getId()
+        {
+            //Arrange
+            $type = "BBQ";
+            $id = 1;
+            $test_cuisine = new Cuisine($type, $id);
+
+            //Act
+            $result = $test_cuisine->getId();
+
+            //Assert
+            $this->assertEquals(true, is_numeric($result));
         }
 
         function test_GetRestaurant()
