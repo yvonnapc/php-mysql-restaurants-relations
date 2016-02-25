@@ -132,6 +132,81 @@
             $this->assertEquals([$test_restaurant, $test_restaurant2], $result);
         }
 
+        function test_find()
+        {
+          //Arrange
+          $type = "BBQ";
+          $id = null;
+          $test_cuisine = new Cuisine($type, $id);
+          $test_cuisine->save();
+
+
+          $type2 = "Vietnamese";
+          $id = null;
+          $test_cuisine2 = new Cuisine($type2, $id);
+          $test_cuisine2->save();
+          //Act
+          $result = Cuisine::find($test_cuisine->getId());
+          //Assert
+          $this->assertEquals($test_cuisine, $result);
+        }
+
+        function testUpdate()
+        {
+          //Arrange
+          $type = "BBQ";
+          $id = null;
+          $test_cuisine = new Cuisine($type, $id);
+          $test_cuisine->save();
+
+          $new_type = "Vietnamese";
+          //Act
+          $test_cuisine->update($new_type);
+          //Assert
+          $this->assertEquals("Vietnamese", $test_cuisine->getType());
+        }
+
+        function testDelete()
+        {
+          //Arrange
+          $type = "BBQ";
+          $id = null;
+          $test_cuisine = new Cuisine($type, $id);
+          $test_cuisine->save();
+
+          $type2 = "Vegan";
+          $id = null;
+          $test_cuisine2 = new Cuisine($type2, $id);
+          $test_cuisine2->save();
+          //Act
+          $test_cuisine->delete();
+          //Assert
+          $this->assertEquals([$test_cuisine2], Cuisine::getAll());
+        }
+
+        function testDeleteCuisineRestaurants()
+        {
+          //Arrange
+          $type = "Meat";
+          $id = null;
+          $test_cuisine = new Cuisine($type, $id);
+          $test_cuisine->save();
+
+          $name = "Not Vegan";
+          $address = "123";
+          $phone = "456";
+          $id = null;
+          $cuisine_id = $test_cuisine->getId();
+          $test_restaurant = new Restaurant($name, $address, $phone, $cuisine_id, $id);
+          $test_restaurant->save();
+
+          //Act
+          $test_cuisine->delete();
+
+          //Assert
+          $this->assertEquals([], Restaurant::getAll());
+        }
+
 
     }
 
