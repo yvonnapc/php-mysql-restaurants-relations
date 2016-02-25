@@ -57,6 +57,7 @@ class Restaurant
         return $this->cuisine_id;
     }
 
+
     function save()
     {
         $GLOBALS['DB']->exec("INSERT INTO restaurant (name, address, phone, cuisine_id) VALUES ('{$this->getName()}','{$this->getAddress()}','{$this->getPhone()}',{$this->getCuisineId()});");
@@ -65,7 +66,7 @@ class Restaurant
 
     static function getAll()
     {
-        $returned_restaurants = $GLOBALS['DB']->query("SELECT * FROM restaurant");
+        $returned_restaurants = $GLOBALS['DB']->query("SELECT * FROM restaurant;");
         $restaurants = array();
         foreach($returned_restaurants as $restaurant) {
           $name = $restaurant['name'];

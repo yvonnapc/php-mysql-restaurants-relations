@@ -25,7 +25,7 @@
         function test_getName()
         {
             //Arrange
-            $name = "Bob's";
+            $name = "Bobs";
             $address = "22 N. Street";
             $phone = "(218)443-2911";
             $cuisine_id = null;
@@ -37,13 +37,13 @@
             $result = $new_name->getName();
 
             //Assert
-            $this->assertEquals("Bob's", $result);
+            $this->assertEquals("Bobs", $result);
         }
 
         function test_getAddress()
         {
             //Arrange
-            $name = "Bob's";
+            $name = "Bobs";
             $address = "22 N. Street";
             $phone = "(218)443-2911";
             $cuisine_id = null;
@@ -66,19 +66,24 @@
             $test_cuisine = new Cuisine($type, $id);
             $test_cuisine->save();
 
-            $name = "Bob's";
+            $name = "Bobs";
             $address = "22 N. Street";
             $phone = "(218)443-2911";
             $cuisine_id = $test_cuisine->getId();
-
             $test_restaurant = new Restaurant($name, $address, $phone, $cuisine_id);
             $test_restaurant->save();
-            
+
+            $name2 = "Pizza Pizza";
+            $address2 = "534 SE. Main";
+            $phone2 = "(218)422-1111";
+            $test_restaurant2 = new Restaurant($name2, $address2, $phone2, $cuisine_id, $id);
+            $test_restaurant2->save();
+
             //Act
             $result = Restaurant::getAll();
 
             //Assert
-            $this->assertEquals([$test_restaurant], $result);
+            $this->assertEquals([$test_restaurant, $test_restaurant2], $result);
 
         }
 
@@ -90,12 +95,11 @@
             $test_cuisine = new Cuisine($type, $id);
             $test_cuisine->save();
 
-            $name = "Bob's";
+            $name = "Bobs";
             $address = "22 N. Street";
             $phone = "(218)443-2911";
             $cuisine_id = $test_cuisine->getId();
-
-            $test_restaurant = new Restaurant($name, $address, $phone, $cuisine_id);
+            $test_restaurant = new Restaurant($name, $address, $phone, $cuisine_id, $id);
 
             //Act
             $test_restaurant->save();

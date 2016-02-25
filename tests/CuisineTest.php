@@ -51,36 +51,11 @@
             $this->assertEquals(true, is_numeric($result));
         }
 
-        function test_GetRestaurants()
-        {
-            //Arrange
-            $type = "BBQ";
-            $id = null;
-            $test_cuisine = new Cuisine($type, $id);
-            $test_cuisine->save();
-
-            $test_cuisine_id = $test_cuisine->getId();
-
-            $name = "Bob's";
-            $address = "22 N. Street";
-            $phone = "(218)443-2911";
-
-            $test_restaurant = new Restaurant($name, $address, $phone, $test_cuisine_id, $id);
-            $test_restaurant->save();
-
-            //Act
-            $result = $test_cuisine->getRestaurants();
-
-            //Assert
-            $this->assertEquals([$test_restaurant], $result);
-        }
-
         function test_save()
         {
             //Arrange
             $type = "BBQ";
-            $id = null;
-            $test_cuisine = new Cuisine($type, $id);
+            $test_cuisine = new Cuisine($type);
             $test_cuisine->save();
 
             //Act
@@ -127,6 +102,34 @@
 
             //Assert
             $this->assertEquals([], $result);
+        }
+
+        function test_GetRestaurants()
+        {
+            //Arrange
+            $type = "BBQ";
+            $id = null;
+            $test_cuisine = new Cuisine($type, $id);
+            $test_cuisine->save();
+            $test_cuisine_id = $test_cuisine->getId();
+
+            $name = "Bobs";
+            $address = "22 N. Street";
+            $phone = "(218)443-2911";
+            $test_restaurant = new Restaurant($name, $address, $phone, $test_cuisine_id, $id);
+            $test_restaurant->save();
+
+            $name2 = "Pizza Pizza";
+            $address2 = "534 SE. Main";
+            $phone2 = "(218)422-1111";
+            $test_restaurant2 = new Restaurant($name2, $address2, $phone2, $test_cuisine_id, $id);
+            $test_restaurant2->save();
+
+            //Act
+            $result = $test_cuisine->getRestaurants();
+
+            //Assert
+            $this->assertEquals([$test_restaurant, $test_restaurant2], $result);
         }
 
 
