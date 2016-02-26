@@ -1,30 +1,33 @@
 <html>
 <head>
-    <title></title>
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
+   <link rel='stylesheet' href='/styles.css'>
+    <title>Cuisine</title>
 </head>
 <body>
-    <h1>Cuisines</h1>
-    {% if cuisines is not empty %}
-    <h4>Here are all of your cuisines</h4>
-    <ul>
-        {% for cuisine in cuisines %}
-          <li><a href="/cuisines/{{ cuisine.getId }}">{{ cuisine.getType }}</a></li>
-        {% endfor %}
-    </ul>
-    {% endif %}
+  <div class="container">
+        <h1>Cuisines</h1>
+        {% if cuisines is not empty %}
+        <h4>Here are all of your cuisines</h4>
+        <ul>
+            {% for cuisine in cuisines %}
+              <li><a href="/cuisines/{{ cuisine.getId }}">{{ cuisine.getType }}</a></li>
+            {% endfor %}
+        </ul>
+        {% endif %}
 
 
-    <p>Add a Cuisine</p>
-        <form action="/cuisines" method="post">
-          <label for="type">Cuisine Type:</label>
-          <input name="type" type="text" required>
-          <button type="submit">Add Cuisine</button>
-        </form>
+        <h3>Add a Cuisine</h3>
+            <form action="/cuisines" method="post">
+              <label for="type">Cuisine Type:</label>
+              <input name="type" type="text" required>
+              <button type="submit">Add Cuisine</button>
+            </form>
 
-        <form action='/delete_cuisines' method='post'>
-          <button type='submit'>Clear</button>
-      </form>
-
-    <p><a href='/'>Home</a></p>
+            <form action='/delete_cuisines' method='post'>
+              <button type='submit'>Clear</button>
+          </form>
+        <p><a href='/'>Home</a></p>
+  </div>
 </body>
 </html>
