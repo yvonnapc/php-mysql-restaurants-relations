@@ -16,17 +16,17 @@
         </ul>
         {% endif %}
 
+        <form action='/delete_cuisines' method='post'>
+          <button class="btn-danger" type='submit'>Clear</button>
+        </form>
 
         <h3>Add a Cuisine</h3>
             <form action="/cuisines" method="post">
               <label for="type">Cuisine Type:</label>
               <input name="type" type="text" required>
-              <button type="submit">Add Cuisine</button>
+              <button class="btn-success" type="submit">Add Cuisine</button>
             </form>
 
-            <form action='/delete_cuisines' method='post'>
-              <button type='submit'>Clear</button>
-          </form>
         <p><a href='/'>Home</a></p>
   </div>
 </body>

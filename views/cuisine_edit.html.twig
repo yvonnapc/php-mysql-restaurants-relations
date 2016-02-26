@@ -15,14 +15,16 @@
           <label for="type">Rename this cuisine:</label>
           <input id="type" name="type" type="text">
 
-          <button type="submit">Update</button>
+          <button class="btn-info" type="submit">Update</button>
         </form>
 
         <form action="/cuisines/{{ cuisine.getId }}" method="post">
           <input name="_method" type="hidden" value="delete">
 
-          <button type="submit">Delete this cuisine</button>
+          <button class="btn-danger" type="submit">Delete this cuisine</button>
         </form>
+
+          <h3><a href='/'>Home</a></h3>
     </div>
 
   </body>
